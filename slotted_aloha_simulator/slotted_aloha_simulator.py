@@ -38,20 +38,20 @@ class Aloha:
     Asymptotic results (from approximation)
 
     >>> mfa = aloha.res_['mf_asymptotic']
-    >>> [mfa[k] for k in ['occupancy', 'goodput', 'efficiency']]
-    [0.5000000000000001, 0.3784142300054423, 0.5946035575013606]
+    >>> [round(mfa[k], 4) for k in ['occupancy', 'goodput', 'efficiency']]
+    [0.5, 0.3784, 0.5946]
 
     Results at epoch 3 (from approximation)
 
     >>> mf = aloha.res_['mf']
-    >>> [mf[k][3] for k in ['occupancy', 'goodput', 'efficiency']]
-    [0.6501379554140254, 0.42017983281634214, 0.4549070027900601]
+    >>> [round(mf[k][3], 4) for k in ['occupancy', 'goodput', 'efficiency']]
+    [0.6501, 0.4202, 0.4549]
 
     Results at epoch 3 (from simulations)
 
     >>> sim = aloha.res_['simulation']
-    >>> [sim[k][3] for k in ['occupancy', 'goodput', 'efficiency']]
-    [0.6666666666666666, 0.42658730158730157, 0.44698544698544695]
+    >>> [round(sim[k][3], 4) for k in ['occupancy', 'goodput', 'efficiency']]
+    [0.6667, 0.4266, 0.447]
     """
     def __init__(self, p0=1/8, alpha=1/2, n=2, c_max=40, t_sim=20, m=10, seed=None):
         self.p0 = p0

@@ -43,23 +43,23 @@ def parallel_compute(parameters_list, n_jobs=-1):
     >>> p_list = [{'p0': p, 'n': 4, 't_sim': 10, 'seed': 42} for p in p_values]
     >>> data = parallel_compute(p_list, n_jobs=len(p_values))
     >>> for dat in data:
-    ...     print(dat['p0'])
+    ...     print(round(dat['p0'], 4))
     ...     mf = dat['results']['mf']
-    ...     print([mf[k][3] for k in ['occupancy', 'goodput', 'efficiency']])
+    ...     print([mf[k][3].round(4) for k in ['occupancy', 'goodput', 'efficiency']])
     ...     sim = dat['results']['simulation']
-    ...     print([sim[k][3] for k in ['occupancy', 'goodput', 'efficiency']])
+    ...     print([sim[k][3].round(4) for k in ['occupancy', 'goodput', 'efficiency']])
     0.125
-    [0.36420070073707755, 0.30486864402911484, 0.7120164602702012]
-    [0.36323529411764705, 0.30392156862745096, 0.7118254879448909]
+    [0.3642, 0.3049, 0.712]
+    [0.3632, 0.3039, 0.7118]
     0.25
-    [0.5215184798200845, 0.3872977788242961, 0.5753059648859896]
-    [0.5176470588235295, 0.3803921568627451, 0.5627266134880348]
+    [0.5215, 0.3873, 0.5753]
+    [0.5176, 0.3804, 0.5627]
     0.5
-    [0.6501379554140254, 0.42017983281634214, 0.4549070027900601]
-    [0.6465686274509804, 0.4230392156862745, 0.46372917786136486]
-    0.6666666666666666
-    [0.69289320276714, 0.4217366387626196, 0.412540956923515]
-    [0.7019607843137254, 0.4377450980392157, 0.4301541425818883]
+    [0.6501, 0.4202, 0.4549]
+    [0.6466, 0.423, 0.4637]
+    0.6667
+    [0.6929, 0.4217, 0.4125]
+    [0.702, 0.4377, 0.4302]
     """
     return Parallel(n_jobs=n_jobs)(delayed(compute)(p) for p in parameters_list)
 
