@@ -479,20 +479,20 @@ document.write(`
 <span class="sd">    Asymptotic results (from approximation)</span>
 
 <span class="sd">    &gt;&gt;&gt; mfa = aloha.res_[&#39;mf_asymptotic&#39;]</span>
-<span class="sd">    &gt;&gt;&gt; [mfa[k] for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]]</span>
-<span class="sd">    [0.5000000000000001, 0.3784142300054423, 0.5946035575013606]</span>
+<span class="sd">    &gt;&gt;&gt; [round(mfa[k], 4) for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]]</span>
+<span class="sd">    [0.5, 0.3784, 0.5946]</span>
 
 <span class="sd">    Results at epoch 3 (from approximation)</span>
 
 <span class="sd">    &gt;&gt;&gt; mf = aloha.res_[&#39;mf&#39;]</span>
-<span class="sd">    &gt;&gt;&gt; [mf[k][3] for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]]</span>
-<span class="sd">    [0.6501379554140254, 0.42017983281634214, 0.4549070027900601]</span>
+<span class="sd">    &gt;&gt;&gt; [round(mf[k][3], 4) for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]]</span>
+<span class="sd">    [0.6501, 0.4202, 0.4549]</span>
 
 <span class="sd">    Results at epoch 3 (from simulations)</span>
 
 <span class="sd">    &gt;&gt;&gt; sim = aloha.res_[&#39;simulation&#39;]</span>
-<span class="sd">    &gt;&gt;&gt; [sim[k][3] for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]]</span>
-<span class="sd">    [0.6666666666666666, 0.42658730158730157, 0.44698544698544695]</span>
+<span class="sd">    &gt;&gt;&gt; [round(sim[k][3], 4) for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]]</span>
+<span class="sd">    [0.6667, 0.4266, 0.447]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c_max</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t_sim</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span>

@@ -499,23 +499,23 @@ document.write(`
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p_list</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;p0&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;t_sim&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;seed&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">}</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">p_values</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">parallel_compute</span><span class="p">(</span><span class="n">p_list</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">p_values</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">dat</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s1">&#39;p0&#39;</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s1">&#39;p0&#39;</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
 <span class="gp">... </span>    <span class="n">mf</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;mf&#39;</span><span class="p">]</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">([</span><span class="n">mf</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">]])</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">([</span><span class="n">mf</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">]])</span>
 <span class="gp">... </span>    <span class="n">sim</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;simulation&#39;</span><span class="p">]</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">([</span><span class="n">sim</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">]])</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">([</span><span class="n">sim</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">]])</span>
 <span class="go">0.125</span>
-<span class="go">[0.36420070073707755, 0.30486864402911484, 0.7120164602702012]</span>
-<span class="go">[0.36323529411764705, 0.30392156862745096, 0.7118254879448909]</span>
+<span class="go">[0.3642, 0.3049, 0.712]</span>
+<span class="go">[0.3632, 0.3039, 0.7118]</span>
 <span class="go">0.25</span>
-<span class="go">[0.5215184798200845, 0.3872977788242961, 0.5753059648859896]</span>
-<span class="go">[0.5176470588235295, 0.3803921568627451, 0.5627266134880348]</span>
+<span class="go">[0.5215, 0.3873, 0.5753]</span>
+<span class="go">[0.5176, 0.3804, 0.5627]</span>
 <span class="go">0.5</span>
-<span class="go">[0.6501379554140254, 0.42017983281634214, 0.4549070027900601]</span>
-<span class="go">[0.6465686274509804, 0.4230392156862745, 0.46372917786136486]</span>
-<span class="go">0.6666666666666666</span>
-<span class="go">[0.69289320276714, 0.4217366387626196, 0.412540956923515]</span>
-<span class="go">[0.7019607843137254, 0.4377450980392157, 0.4301541425818883]</span>
+<span class="go">[0.6501, 0.4202, 0.4549]</span>
+<span class="go">[0.6466, 0.423, 0.4637]</span>
+<span class="go">0.6667</span>
+<span class="go">[0.6929, 0.4217, 0.4125]</span>
+<span class="go">[0.702, 0.4377, 0.4302]</span>
 </pre></div>
 </div>
 </dd></dl>

@@ -489,20 +489,20 @@ document.write(`
 </div>
 <p>Asymptotic results (from approximation)</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mfa</span> <span class="o">=</span> <span class="n">aloha</span><span class="o">.</span><span class="n">res_</span><span class="p">[</span><span class="s1">&#39;mf_asymptotic&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">mfa</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">]]</span>
-<span class="go">[0.5000000000000001, 0.3784142300054423, 0.5946035575013606]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">mfa</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">]]</span>
+<span class="go">[0.5, 0.3784, 0.5946]</span>
 </pre></div>
 </div>
 <p>Results at epoch 3 (from approximation)</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">aloha</span><span class="o">.</span><span class="n">res_</span><span class="p">[</span><span class="s1">&#39;mf&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">mf</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">]]</span>
-<span class="go">[0.6501379554140254, 0.42017983281634214, 0.4549070027900601]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">mf</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">]]</span>
+<span class="go">[0.6501, 0.4202, 0.4549]</span>
 </pre></div>
 </div>
 <p>Results at epoch 3 (from simulations)</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sim</span> <span class="o">=</span> <span class="n">aloha</span><span class="o">.</span><span class="n">res_</span><span class="p">[</span><span class="s1">&#39;simulation&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">sim</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">]]</span>
-<span class="go">[0.6666666666666666, 0.42658730158730157, 0.44698544698544695]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">sim</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;occupancy&#39;</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">]]</span>
+<span class="go">[0.6667, 0.4266, 0.447]</span>
 </pre></div>
 </div>
 <dl class="py method">

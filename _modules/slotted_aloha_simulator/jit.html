@@ -474,15 +474,15 @@ document.write(`
 <span class="sd">    --------</span>
 
 <span class="sd">    &gt;&gt;&gt; s, o, g, e = mean_field()</span>
-<span class="sd">    &gt;&gt;&gt; s[:4]</span>
-<span class="sd">    array([0.78077641, 0.17116461, 0.03752332, 0.008226  ])</span>
-<span class="sd">    &gt;&gt;&gt; e</span>
-<span class="sd">    0.8903882032022076</span>
+<span class="sd">    &gt;&gt;&gt; s[:4].round(4)</span>
+<span class="sd">    array([0.7808, 0.1712, 0.0375, 0.0082])</span>
+<span class="sd">    &gt;&gt;&gt; round(e, 4)</span>
+<span class="sd">    0.8904</span>
 <span class="sd">    &gt;&gt;&gt; s, o, g, e = mean_field(n=1000)</span>
-<span class="sd">    &gt;&gt;&gt; s[:4]</span>
-<span class="sd">    array([0.00277099, 0.00276331, 0.00275565, 0.00274802])</span>
-<span class="sd">    &gt;&gt;&gt; e</span>
-<span class="sd">    0.5013854932994373</span>
+<span class="sd">    &gt;&gt;&gt; s[:4].round(4)</span>
+<span class="sd">    array([0.0028, 0.0028, 0.0028, 0.0027])</span>
+<span class="sd">    &gt;&gt;&gt; round(e, 4)</span>
+<span class="sd">    0.5014</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Solve noise equation</span>
     <span class="k">def</span> <span class="nf">noise_f</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
@@ -535,21 +535,21 @@ document.write(`
 <span class="sd">    --------</span>
 
 <span class="sd">    &gt;&gt;&gt; s, o, g, e = dynamic_mean_field()</span>
-<span class="sd">    &gt;&gt;&gt; s[:4, :4]</span>
-<span class="sd">    array([[1.00000000e+00, 9.77172375e-01, 9.39225819e-01, 8.86136331e-01],</span>
-<span class="sd">           [0.00000000e+00, 2.27670670e-02, 5.98708470e-02, 1.09535304e-01],</span>
-<span class="sd">           [0.00000000e+00, 6.05583191e-05, 8.99640175e-04, 4.27381245e-03],</span>
-<span class="sd">           [0.00000000e+00, 0.00000000e+00, 3.68963159e-06, 5.43098575e-05]])</span>
-<span class="sd">    &gt;&gt;&gt; e[:4]</span>
-<span class="sd">    array([0.875     , 0.87642862, 0.87882667, 0.8822526 ])</span>
+<span class="sd">    &gt;&gt;&gt; s[:4, :4].round(4)</span>
+<span class="sd">    array([[1.000e+00, 9.772e-01, 9.392e-01, 8.861e-01],</span>
+<span class="sd">           [0.000e+00, 2.280e-02, 5.990e-02, 1.095e-01],</span>
+<span class="sd">           [0.000e+00, 1.000e-04, 9.000e-04, 4.300e-03],</span>
+<span class="sd">           [0.000e+00, 0.000e+00, 0.000e+00, 1.000e-04]])</span>
+<span class="sd">    &gt;&gt;&gt; e[:4].round(4)</span>
+<span class="sd">    array([0.875 , 0.8764, 0.8788, 0.8823])</span>
 <span class="sd">    &gt;&gt;&gt; s, o, g, e = dynamic_mean_field(n=1000)</span>
-<span class="sd">    &gt;&gt;&gt; s[:4, :4]</span>
-<span class="sd">    array([[1.        , 0.8203125 , 0.55445194, 0.25776209],</span>
-<span class="sd">           [0.        , 0.17578125, 0.39088681, 0.51122929],</span>
-<span class="sd">           [0.        , 0.00390625, 0.05279108, 0.20593205],</span>
-<span class="sd">           [0.        , 0.        , 0.00185167, 0.02411189]])</span>
-<span class="sd">    &gt;&gt;&gt; e[:4]</span>
-<span class="sd">    array([1.16424658e-58, 4.55917888e-53, 3.10877215e-44, 1.12609427e-32])</span>
+<span class="sd">    &gt;&gt;&gt; s[:4, :4].round(4)</span>
+<span class="sd">    array([[1.    , 0.8203, 0.5545, 0.2578],</span>
+<span class="sd">           [0.    , 0.1758, 0.3909, 0.5112],</span>
+<span class="sd">           [0.    , 0.0039, 0.0528, 0.2059],</span>
+<span class="sd">           [0.    , 0.    , 0.0019, 0.0241]])</span>
+<span class="sd">    &gt;&gt;&gt; e[:4].round(4)</span>
+<span class="sd">    array([0., 0., 0., 0.])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">c_max</span><span class="p">)</span>
     <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -685,19 +685,19 @@ document.write(`
 
 <span class="sd">    &gt;&gt;&gt; s, o, g, e = aloha_run(n=2, t_sim=10, m=5)</span>
 <span class="sd">    &gt;&gt;&gt; s, o, g, e = aloha_run(n=2, t_sim=14, m=10, seed=42)</span>
-<span class="sd">    &gt;&gt;&gt; s[:4, :4]</span>
-<span class="sd">    array([[1.        , 0.97653959, 0.94202544, 0.89583333],</span>
-<span class="sd">           [0.        , 0.02346041, 0.05797456, 0.10220588],</span>
-<span class="sd">           [0.        , 0.        , 0.        , 0.00196078],</span>
-<span class="sd">           [0.        , 0.        , 0.        , 0.        ]])</span>
-<span class="sd">    &gt;&gt;&gt; e[:4]</span>
-<span class="sd">    array([0.8503937 , 0.8697318 , 0.87991718, 0.88066826])</span>
+<span class="sd">    &gt;&gt;&gt; s[:4, :4].round(4)</span>
+<span class="sd">    array([[1.    , 0.9765, 0.942 , 0.8958],</span>
+<span class="sd">           [0.    , 0.0235, 0.058 , 0.1022],</span>
+<span class="sd">           [0.    , 0.    , 0.    , 0.002 ],</span>
+<span class="sd">           [0.    , 0.    , 0.    , 0.    ]])</span>
+<span class="sd">    &gt;&gt;&gt; e[:4].round(4)</span>
+<span class="sd">    array([0.8504, 0.8697, 0.8799, 0.8807])</span>
 <span class="sd">    &gt;&gt;&gt; s, o, g, e = aloha_run(n=1000, t_sim=14, m=10, seed=42)</span>
-<span class="sd">    &gt;&gt;&gt; s[:4, :4]</span>
-<span class="sd">    array([[1.        , 0.82068915, 0.55447114, 0.25807059],</span>
-<span class="sd">           [0.        , 0.1754218 , 0.39083268, 0.51100784],</span>
-<span class="sd">           [0.        , 0.00388905, 0.05283904, 0.20565833],</span>
-<span class="sd">           [0.        , 0.        , 0.00184393, 0.02423922]])</span>
+<span class="sd">    &gt;&gt;&gt; s[:4, :4].round(4)</span>
+<span class="sd">    array([[1.    , 0.8207, 0.5545, 0.2581],</span>
+<span class="sd">           [0.    , 0.1754, 0.3908, 0.511 ],</span>
+<span class="sd">           [0.    , 0.0039, 0.0528, 0.2057],</span>
+<span class="sd">           [0.    , 0.    , 0.0018, 0.0242]])</span>
 <span class="sd">    &gt;&gt;&gt; e[:4]</span>
 <span class="sd">    array([0., 0., 0., 0.])</span>
 <span class="sd">    &quot;&quot;&quot;</span>

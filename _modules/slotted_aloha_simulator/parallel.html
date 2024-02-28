@@ -487,23 +487,23 @@ document.write(`
 <span class="sd">    &gt;&gt;&gt; p_list = [{&#39;p0&#39;: p, &#39;n&#39;: 4, &#39;t_sim&#39;: 10, &#39;seed&#39;: 42} for p in p_values]</span>
 <span class="sd">    &gt;&gt;&gt; data = parallel_compute(p_list, n_jobs=len(p_values))</span>
 <span class="sd">    &gt;&gt;&gt; for dat in data:</span>
-<span class="sd">    ...     print(dat[&#39;p0&#39;])</span>
+<span class="sd">    ...     print(round(dat[&#39;p0&#39;], 4))</span>
 <span class="sd">    ...     mf = dat[&#39;results&#39;][&#39;mf&#39;]</span>
-<span class="sd">    ...     print([mf[k][3] for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]])</span>
+<span class="sd">    ...     print([mf[k][3].round(4) for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]])</span>
 <span class="sd">    ...     sim = dat[&#39;results&#39;][&#39;simulation&#39;]</span>
-<span class="sd">    ...     print([sim[k][3] for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]])</span>
+<span class="sd">    ...     print([sim[k][3].round(4) for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]])</span>
 <span class="sd">    0.125</span>
-<span class="sd">    [0.36420070073707755, 0.30486864402911484, 0.7120164602702012]</span>
-<span class="sd">    [0.36323529411764705, 0.30392156862745096, 0.7118254879448909]</span>
+<span class="sd">    [0.3642, 0.3049, 0.712]</span>
+<span class="sd">    [0.3632, 0.3039, 0.7118]</span>
 <span class="sd">    0.25</span>
-<span class="sd">    [0.5215184798200845, 0.3872977788242961, 0.5753059648859896]</span>
-<span class="sd">    [0.5176470588235295, 0.3803921568627451, 0.5627266134880348]</span>
+<span class="sd">    [0.5215, 0.3873, 0.5753]</span>
+<span class="sd">    [0.5176, 0.3804, 0.5627]</span>
 <span class="sd">    0.5</span>
-<span class="sd">    [0.6501379554140254, 0.42017983281634214, 0.4549070027900601]</span>
-<span class="sd">    [0.6465686274509804, 0.4230392156862745, 0.46372917786136486]</span>
-<span class="sd">    0.6666666666666666</span>
-<span class="sd">    [0.69289320276714, 0.4217366387626196, 0.412540956923515]</span>
-<span class="sd">    [0.7019607843137254, 0.4377450980392157, 0.4301541425818883]</span>
+<span class="sd">    [0.6501, 0.4202, 0.4549]</span>
+<span class="sd">    [0.6466, 0.423, 0.4637]</span>
+<span class="sd">    0.6667</span>
+<span class="sd">    [0.6929, 0.4217, 0.4125]</span>
+<span class="sd">    [0.702, 0.4377, 0.4302]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">compute</span><span class="p">)(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parameters_list</span><span class="p">)</span></div>
 
