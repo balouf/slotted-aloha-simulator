@@ -7,7 +7,6 @@ Welcome to Slotted Aloha Simulator's documentation!
 
    readme
    installation
-   usage
    tutorials/index
    reference/index
    contributing

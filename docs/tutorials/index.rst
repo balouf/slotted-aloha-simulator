@@ -6,4 +6,3 @@ Tutorials
 
 .. toctree::
    tutorial
-   answer

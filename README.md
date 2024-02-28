@@ -16,7 +16,10 @@ SAS provides simulation and mean field models for slotted Aloha with talkative u
 
 ## Features
 
-- TODO
+- High-speed simulator for simplified slotted aloha with unbounded window growth
+- Also provides deterministic approximations
+- Easy parallelization
+- Display functions
 
 ## Credits
 

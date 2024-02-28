@@ -58,7 +58,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = 'Slotted Aloha Simulator'
+project = 'SAS'
 copyright = "2024, Fabien Mathieu"
 author = "Fabien Mathieu"
 
