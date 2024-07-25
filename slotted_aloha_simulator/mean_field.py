@@ -107,19 +107,21 @@ def dynamic_mean_field(p0=1/8, alpha=.5, n=2, c_max=40, t_sim=10):
     >>> e[:4].round(4)
     array([0., 0., 0., 0.])
     """
-    c = np.zeros(c_max)
+    c = np.zeros(c_max+1)
     c[0] = 1
-    speeds = p0*alpha**np.arange(c_max)
-    states = np.zeros((c_max, t_sim+1))
+    speeds = p0*alpha**np.arange(c_max+1)
+    states = np.zeros((c_max+1, t_sim+1))
     occ = np.zeros(t_sim+1)
     good = np.zeros(t_sim+1)
     eff = np.zeros(t_sim+1)
     for t in range(t_sim+1):
-        s_t = np.zeros(c_max)
+        s_t = np.zeros(c_max+1)
         for _ in range(2**t):
             s_t += c
             s = 1 - (1-c@speeds)**(n-1)
+            stuck = s * speeds[-1] * c[-1]
             c[1:] = c[1:]*(1-speeds[1:]) + s*c[:-1]*speeds[:-1]
+            c[-1] += stuck
             c[0] = max(0, 1-np.sum(c[1:]))
         s_t /= 2**t
         x = s_t@speeds

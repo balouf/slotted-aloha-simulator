@@ -89,7 +89,7 @@ def evolution_plot(data, params, legend=True, export=None, keys=None, names=None
     plt.xlim([0, t_sim])
     plt.ylim([0, 1])
     plt.xlabel('Epoch $T$')
-    title = ', '.join([f"{p_labels[k]}={v}" for k, v in params.items()])
+    title = ', '.join([f"{p_labels.get(k, k)}={v}" for k, v in params.items()])
     plt.title(f"${title}$")
     if legend:
         for t in styles:
@@ -149,7 +149,7 @@ def distribution_plot(data, params, legend=True, export=None, keys=None, ym=1e-8
     plt.ylim([ym, 1])
     plt.xlabel('State')
     plt.ylabel('Probability')
-    title = ', '.join([f"{p_labels[k]}={v}" for k, v in params.items()])
+    title = ', '.join([f"{p_labels.get(k, k)}={v}" for k, v in params.items()])
     plt.title(f"${title}$")
 
     if legend:

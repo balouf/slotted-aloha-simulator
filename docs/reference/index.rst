@@ -7,4 +7,6 @@ Reference
    slotted_aloha_simulator
    parallel
    plot
-   jit
+   geometric
+   rectangular
+   mean_field
