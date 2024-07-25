@@ -437,8 +437,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for slotted_aloha_simulator.slotted_aloha_simulator</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">slotted_aloha_simulator.jit</span> <span class="kn">import</span> <span class="n">mean_field</span><span class="p">,</span> <span class="n">dynamic_mean_field</span>
-<span class="kn">from</span> <span class="nn">slotted_aloha_simulator.jit</span> <span class="kn">import</span> <span class="n">aloha_run</span>
+<span></span><span class="kn">from</span> <span class="nn">slotted_aloha_simulator.mean_field</span> <span class="kn">import</span> <span class="n">mean_field</span><span class="p">,</span> <span class="n">dynamic_mean_field</span>
+<span class="kn">from</span> <span class="nn">slotted_aloha_simulator.geometric</span> <span class="kn">import</span> <span class="n">aloha_run</span>
+<span class="kn">from</span> <span class="nn">slotted_aloha_simulator.rectangular</span> <span class="kn">import</span> <span class="n">rec_run</span>
 
 
 <div class="viewcode-block" id="Aloha">
@@ -494,10 +495,11 @@ document.write(`
 <span class="sd">    &gt;&gt;&gt; [round(sim[k][3], 4) for k in [&#39;occupancy&#39;, &#39;goodput&#39;, &#39;efficiency&#39;]]</span>
 <span class="sd">    [0.6667, 0.4266, 0.447]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c_max</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t_sim</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c_max</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t_sim</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">c_min</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c_min</span> <span class="o">=</span> <span class="n">c_min</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c_max</span> <span class="o">=</span> <span class="n">c_max</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t_sim</span> <span class="o">=</span> <span class="n">t_sim</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">m</span>
@@ -557,6 +559,21 @@ document.write(`
         <span class="n">s</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">aloha_run</span><span class="p">(</span><span class="n">p0</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">c_max</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">c_max</span><span class="p">,</span>
                                <span class="n">t_sim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t_sim</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">res_</span><span class="p">[</span><span class="s1">&#39;simulation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;state_distribution&#39;</span><span class="p">:</span> <span class="n">s</span><span class="p">,</span> <span class="s1">&#39;occupancy&#39;</span><span class="p">:</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">:</span> <span class="n">g</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">:</span> <span class="n">e</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="Aloha.rec_sim">
+<a class="viewcode-back" href="../../reference/slotted_aloha_simulator.html#slotted_aloha_simulator.slotted_aloha_simulator.Aloha.rec_sim">[docs]</a>
+    <span class="k">def</span> <span class="nf">rec_sim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute per-epoch simulations with rectangular contention windows.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">s</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">rec_run</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">c_min</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">c_min</span><span class="p">,</span> <span class="n">c_max</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">c_max</span><span class="p">,</span>
+                               <span class="n">t_sim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t_sim</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">res_</span><span class="p">[</span><span class="s1">&#39;rec_sim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;state_distribution&#39;</span><span class="p">:</span> <span class="n">s</span><span class="p">,</span> <span class="s1">&#39;occupancy&#39;</span><span class="p">:</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;goodput&#39;</span><span class="p">:</span> <span class="n">g</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">:</span> <span class="n">e</span><span class="p">}</span></div>
 </div>
 
 </pre></div>

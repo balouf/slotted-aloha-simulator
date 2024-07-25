@@ -444,7 +444,7 @@ document.write(`
 
 <div class="viewcode-block" id="compute">
 <a class="viewcode-back" href="../../reference/parallel.html#slotted_aloha_simulator.parallel.compute">[docs]</a>
-<span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">computations</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simple wrapper for launching a single simulation</span>
 
@@ -452,6 +452,8 @@ document.write(`
 <span class="sd">    ----------</span>
 <span class="sd">    parameters: :class:`dict`</span>
 <span class="sd">        Parameters for the aloha simulation</span>
+<span class="sd">    computations: :class:`list` of :class:`str`, optional</span>
+<span class="sd">        Name of computing methods to call.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -459,19 +461,25 @@ document.write(`
 <span class="sd">        The input parameters (for traceability) plus a &#39;results&#39; key that contain the simulation measurements.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">aloha</span> <span class="o">=</span> <span class="n">Aloha</span><span class="p">(</span><span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
-    <span class="n">aloha</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">computations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">aloha</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">computations</span><span class="p">:</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="n">aloha</span><span class="p">,</span> <span class="n">comp</span><span class="p">)()</span>
     <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;results&#39;</span><span class="p">:</span> <span class="n">aloha</span><span class="o">.</span><span class="n">res_</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">}</span></div>
 
 
 
 <div class="viewcode-block" id="parallel_compute">
 <a class="viewcode-back" href="../../reference/parallel.html#slotted_aloha_simulator.parallel.parallel_compute">[docs]</a>
-<span class="k">def</span> <span class="nf">parallel_compute</span><span class="p">(</span><span class="n">parameters_list</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">parallel_compute</span><span class="p">(</span><span class="n">parameters_list</span><span class="p">,</span> <span class="n">computations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    parameters_list: :class:`list` of :class:`dict`</span>
 <span class="sd">        Simulation parameters.</span>
+<span class="sd">    computations: :class:`list` of :class:`str`, optional</span>
+<span class="sd">        Name of computing methods to call.</span>
 <span class="sd">    n_jobs: :class:`int`, default=-1</span>
 <span class="sd">        Number of workers to spawn, joblib style (-1 means all CPUs).</span>
 
@@ -505,7 +513,7 @@ document.write(`
 <span class="sd">    [0.6929, 0.4217, 0.4125]</span>
 <span class="sd">    [0.702, 0.4377, 0.4302]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">compute</span><span class="p">)(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parameters_list</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">compute</span><span class="p">)(</span><span class="n">p</span><span class="p">,</span> <span class="n">computations</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parameters_list</span><span class="p">)</span></div>
 
 
 </pre></div>
