@@ -36,7 +36,7 @@
   <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/index';</script>
@@ -400,7 +400,9 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="slotted_aloha_simulator.html">Aloha</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parallel.html">Parallel Computation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot.html">Display</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jit.html">Core Numba functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometric.html">Simulator with geometric window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rectangular.html">Simulator with rectangular window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mean_field.html">Mean-field computations</a></li>
 </ul>
 </div>
 </nav></div>
@@ -482,7 +484,17 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="plot.html#slotted_aloha_simulator.plot.tikzplotlib_fix_ncols"><code class="docutils literal notranslate"><span class="pre">tikzplotlib_fix_ncols()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="jit.html">Core Numba functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometric.html">Simulator with geometric window</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="geometric.html#slotted_aloha_simulator.geometric.aloha_run"><code class="docutils literal notranslate"><span class="pre">aloha_run()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometric.html#slotted_aloha_simulator.geometric.core_aloha_run"><code class="docutils literal notranslate"><span class="pre">core_aloha_run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rectangular.html">Simulator with rectangular window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mean_field.html">Mean-field computations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mean_field.html#slotted_aloha_simulator.mean_field.dynamic_mean_field"><code class="docutils literal notranslate"><span class="pre">dynamic_mean_field()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mean_field.html#slotted_aloha_simulator.mean_field.mean_field"><code class="docutils literal notranslate"><span class="pre">mean_field()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -567,7 +579,7 @@ document.write(`
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     <br/>
   </p>
 </div>
