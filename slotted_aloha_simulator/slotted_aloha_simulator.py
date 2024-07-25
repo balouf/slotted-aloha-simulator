@@ -1,5 +1,6 @@
-from slotted_aloha_simulator.jit import mean_field, dynamic_mean_field
-from slotted_aloha_simulator.jit import aloha_run
+from slotted_aloha_simulator.mean_field import mean_field, dynamic_mean_field
+from slotted_aloha_simulator.geometric import aloha_run
+from slotted_aloha_simulator.rectangular import rec_run
 
 
 class Aloha:
@@ -53,10 +54,11 @@ class Aloha:
     >>> [round(sim[k][3], 4) for k in ['occupancy', 'goodput', 'efficiency']]
     [0.6667, 0.4266, 0.447]
     """
-    def __init__(self, p0=1/8, alpha=1/2, n=2, c_max=40, t_sim=20, m=10, seed=None):
+    def __init__(self, p0=1/8, alpha=1/2, n=2, c_max=40, t_sim=20, m=10, seed=None, c_min=3):
         self.p0 = p0
         self.alpha = alpha
         self.n = n
+        self.c_min = c_min
         self.c_max = c_max
         self.t_sim = t_sim
         self.m = m
@@ -108,3 +110,15 @@ class Aloha:
         s, o, g, e = aloha_run(p0=self.p0, alpha=self.alpha, n=self.n, c_max=self.c_max,
                                t_sim=self.t_sim, m=self.m, seed=self.seed)
         self.res_['simulation'] = {'state_distribution': s, 'occupancy': o, 'goodput': g, 'efficiency': e}
+
+    def rec_sim(self):
+        """
+        Compute per-epoch simulations with rectangular contention windows.
+
+        Returns
+        -------
+        None
+        """
+        s, o, g, e = rec_run(n=self.n, c_min=self.c_min, c_max=self.c_max,
+                               t_sim=self.t_sim, m=self.m, seed=self.seed)
+        self.res_['rec_sim'] = {'state_distribution': s, 'occupancy': o, 'goodput': g, 'efficiency': e}

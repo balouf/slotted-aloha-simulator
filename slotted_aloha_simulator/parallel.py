@@ -3,7 +3,7 @@ from joblib import Parallel, delayed
 from slotted_aloha_simulator.slotted_aloha_simulator import Aloha
 
 
-def compute(parameters):
+def compute(parameters, computations=None):
     """
     Simple wrapper for launching a single simulation
 
@@ -11,6 +11,8 @@ def compute(parameters):
     ----------
     parameters: :class:`dict`
         Parameters for the aloha simulation
+    computations: :class:`list` of :class:`str`, optional
+        Name of computing methods to call.
 
     Returns
     -------
@@ -18,16 +20,22 @@ def compute(parameters):
         The input parameters (for traceability) plus a 'results' key that contain the simulation measurements.
     """
     aloha = Aloha(**parameters)
-    aloha()
+    if computations is None:
+        aloha()
+    else:
+        for comp in computations:
+            getattr(aloha, comp)()
     return {'results': aloha.res_, **parameters}
 
 
-def parallel_compute(parameters_list, n_jobs=-1):
+def parallel_compute(parameters_list, computations=None, n_jobs=-1):
     """
     Parameters
     ----------
     parameters_list: :class:`list` of :class:`dict`
         Simulation parameters.
+    computations: :class:`list` of :class:`str`, optional
+        Name of computing methods to call.
     n_jobs: :class:`int`, default=-1
         Number of workers to spawn, joblib style (-1 means all CPUs).
 
@@ -61,5 +69,5 @@ def parallel_compute(parameters_list, n_jobs=-1):
     [0.6929, 0.4217, 0.4125]
     [0.702, 0.4377, 0.4302]
     """
-    return Parallel(n_jobs=n_jobs)(delayed(compute)(p) for p in parameters_list)
+    return Parallel(n_jobs=n_jobs)(delayed(compute)(p, computations) for p in parameters_list)
 
